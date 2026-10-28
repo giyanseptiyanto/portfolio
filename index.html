@@ -19,20 +19,20 @@
         const storedTheme = localStorage.getItem('giyan-theme');
         root.dataset.theme = (storedTheme === 'dark' || storedTheme === 'light') ? storedTheme : 'light';
 
-        // Versioned preference key: use the HY (Hybrid) display mode as the default, while preserving saved language preferences.
+        // Versioned preference key: use the Hybrid display mode as the default, while preserving saved language preferences.
         const currentLanguage = localStorage.getItem('giyan-language-v2');
         const legacyLanguage = localStorage.getItem('giyan-language');
-        const normalizeLanguage = (language) => language === 'mix' ? 'hy' : language;
+        const normalizeLanguage = (language) => (language === 'hy' || language === 'mix') ? 'hybrid' : language;
         const savedLanguage = normalizeLanguage(currentLanguage);
         const savedLegacyLanguage = normalizeLanguage(legacyLanguage);
-        const initialLanguage = ['id', 'en', 'hy'].includes(savedLanguage)
+        const initialLanguage = ['id', 'en', 'hybrid'].includes(savedLanguage)
           ? savedLanguage
-          : (savedLegacyLanguage === 'en' || savedLegacyLanguage === 'hy' ? savedLegacyLanguage : 'hy');
+          : (savedLegacyLanguage === 'en' || savedLegacyLanguage === 'hybrid' ? savedLegacyLanguage : 'hybrid');
         root.dataset.language = initialLanguage;
         root.lang = initialLanguage === 'en' ? 'en' : 'id';
       } catch (error) {
         root.dataset.theme = 'light';
-        root.dataset.language = 'hy';
+        root.dataset.language = 'hybrid';
         root.lang = 'id';
       }
     })();
@@ -45,53 +45,63 @@
   <div class="site_shell min-h-screen">
     <header class="site_header sticky top-0 z-50 border-b">
       <nav class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8" aria-label="Navigasi utama">
-        <a class="flex items-center gap-2 font-black tracking-tight" href="#home" aria-label="Giyan, kembali ke beranda">
+        <a class="site_brand flex shrink-0 items-center gap-2 font-black tracking-tight" href="#home" aria-label="Giyan, kembali ke beranda">
           <span class="grid size-9 place-items-center rounded-xl bg-[var(--text)] text-sm font-black text-[var(--page)]">GS</span>
           <span>GIYAN<span class="accent_text">.</span></span>
         </a>
 
-        <div id="desktopNav" class="hidden items-center gap-2 xl:gap-2.5 2xl:gap-3 xl:flex">
-          <a class="nav_link whitespace-nowrap text-xs font-semibold" href="#work" data-i18n="nav_work">Karya</a>
-          <a class="nav_link whitespace-nowrap text-xs font-semibold" href="#journey" data-i18n="nav_journey">Pengalaman</a>
-          <a class="nav_link whitespace-nowrap text-xs font-semibold" href="#design" data-i18n="nav_design">Desain</a>
-          <a class="nav_link whitespace-nowrap text-xs font-semibold" href="#skills" data-i18n="nav_skills">Keahlian</a>
-          <a class="nav_link whitespace-nowrap text-xs font-semibold" href="#tools" data-i18n="nav_tools">Tools</a>
-          <a class="nav_link whitespace-nowrap text-xs font-semibold" href="#organization" data-i18n="nav_organization">Organisasi</a>
-          <a class="nav_link whitespace-nowrap text-xs font-semibold" href="#education" data-i18n="nav_education">Pendidikan</a>
-          <a class="nav_link whitespace-nowrap text-xs font-semibold" href="#certifications" data-i18n="nav_certifications">Sertifikasi</a>
-          <a class="nav_link whitespace-nowrap text-xs font-semibold" href="#notes" data-i18n="nav_notes">Catatan</a>
-          <a class="nav_link whitespace-nowrap text-xs font-semibold" href="#about" data-i18n="nav_about">Tentang</a>
-          <a class="nav_link whitespace-nowrap text-xs font-semibold" href="#contact" data-i18n="nav_contact">Kontak</a>
+        <div id="desktopNav" class="desktop_nav hidden items-center gap-1 lg:flex">
+          <a class="nav_link desktop_nav_link whitespace-nowrap text-xs font-semibold" href="#work" data-i18n="nav_work">Karya</a>
+          <a class="nav_link desktop_nav_link whitespace-nowrap text-xs font-semibold" href="#journey" data-i18n="nav_journey">Pengalaman</a>
+          <a class="nav_link desktop_nav_link whitespace-nowrap text-xs font-semibold" href="#design" data-i18n="nav_design">Desain</a>
+          <a class="nav_link desktop_nav_link whitespace-nowrap text-xs font-semibold" href="#about" data-i18n="nav_about">Tentang</a>
+          <details id="desktopMoreMenu" class="nav_more relative">
+            <summary class="nav_link nav_more_trigger whitespace-nowrap rounded-full px-3 py-2 text-xs font-semibold">
+              <span data-i18n="nav_more">Lainnya</span>
+              <svg class="nav_more_chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </summary>
+            <div class="nav_dropdown" aria-label="Navigasi lainnya">
+              <a class="nav_dropdown_link" href="#articles" data-i18n="nav_articles">Artikel</a>
+              <a class="nav_dropdown_link" href="#skills" data-i18n="nav_skills">Keahlian</a>
+              <a class="nav_dropdown_link" href="#tools" data-i18n="nav_tools">Tools</a>
+              <a class="nav_dropdown_link" href="#education" data-i18n="nav_education">Pendidikan</a>
+              <a class="nav_dropdown_link" href="#organization" data-i18n="nav_organization">Organisasi</a>
+              <a class="nav_dropdown_link" href="#certifications" data-i18n="nav_certifications">Sertifikasi</a>
+              <a class="nav_dropdown_link" href="#notes" data-i18n="nav_notes">Catatan</a>
+            </div>
+          </details>
+          <a class="nav_contact_button whitespace-nowrap text-xs font-bold" href="#contact" data-i18n="nav_contact">Kontak</a>
         </div>
 
-        <div class="flex items-center gap-2">
+        <div class="nav_controls flex shrink-0 items-center gap-2">
           <label class="sr-only" for="languageSelect" data-i18n="language_label">Pilih bahasa</label>
-          <select id="languageSelect" class="pill_control max-w-[116px] rounded-full px-3 py-2 text-xs font-bold sm:max-w-none" aria-label="Pilih bahasa">
-            <option value="id">ID · Indonesia</option>
-            <option value="en">EN · English</option>
-            <option value="hy" selected>ID/EN · HY</option>
+          <select id="languageSelect" class="pill_control language_select rounded-full px-2.5 py-2 text-xs font-bold" aria-label="Pilih bahasa" title="Pilih bahasa tampilan">
+            <option value="id">ID</option>
+            <option value="en">EN</option>
+            <option value="hybrid" selected>ID/EN</option>
           </select>
           <button id="themeToggle" class="pill_control grid size-10 place-items-center rounded-full" type="button" aria-label="Ganti tema" title="Ganti tema">
             <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
           </button>
-          <button id="mobileMenuToggle" class="pill_control grid size-10 place-items-center rounded-full xl:hidden" type="button" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="mobileNav">
-            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <button id="mobileMenuToggle" class="pill_control grid size-10 place-items-center rounded-full lg:hidden" type="button" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="mobileNav">
+            <svg id="mobileMenuIcon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
           </button>
         </div>
       </nav>
-      <div id="mobileNav" class="mobile_nav mx-4 mb-3 hidden rounded-2xl border p-3 xl:hidden" aria-label="Navigasi mobile">
-        <div class="grid gap-1">
+      <div id="mobileNav" class="mobile_nav mx-4 mb-3 hidden rounded-2xl border p-3 lg:hidden" aria-label="Navigasi mobile">
+        <div class="mobile_nav_grid grid gap-1">
           <a class="nav_link rounded-xl px-3 py-2 text-sm font-semibold" href="#home" data-i18n="nav_home">Beranda</a>
           <a class="nav_link rounded-xl px-3 py-2 text-sm font-semibold" href="#work" data-i18n="nav_work">Karya</a>
           <a class="nav_link rounded-xl px-3 py-2 text-sm font-semibold" href="#journey" data-i18n="nav_journey">Pengalaman</a>
           <a class="nav_link rounded-xl px-3 py-2 text-sm font-semibold" href="#design" data-i18n="nav_design">Desain</a>
+          <a class="nav_link rounded-xl px-3 py-2 text-sm font-semibold" href="#about" data-i18n="nav_about">Tentang</a>
+          <a class="nav_link rounded-xl px-3 py-2 text-sm font-semibold" href="#articles" data-i18n="nav_articles">Artikel</a>
           <a class="nav_link rounded-xl px-3 py-2 text-sm font-semibold" href="#skills" data-i18n="nav_skills">Keahlian</a>
           <a class="nav_link rounded-xl px-3 py-2 text-sm font-semibold" href="#tools" data-i18n="nav_tools">Tools</a>
-          <a class="nav_link rounded-xl px-3 py-2 text-sm font-semibold" href="#organization" data-i18n="nav_organization">Organisasi</a>
           <a class="nav_link rounded-xl px-3 py-2 text-sm font-semibold" href="#education" data-i18n="nav_education">Pendidikan</a>
+          <a class="nav_link rounded-xl px-3 py-2 text-sm font-semibold" href="#organization" data-i18n="nav_organization">Organisasi</a>
           <a class="nav_link rounded-xl px-3 py-2 text-sm font-semibold" href="#certifications" data-i18n="nav_certifications">Sertifikasi</a>
           <a class="nav_link rounded-xl px-3 py-2 text-sm font-semibold" href="#notes" data-i18n="nav_notes">Catatan</a>
-          <a class="nav_link rounded-xl px-3 py-2 text-sm font-semibold" href="#about" data-i18n="nav_about">Tentang</a>
           <a class="nav_link rounded-xl px-3 py-2 text-sm font-semibold" href="#contact" data-i18n="nav_contact">Kontak</a>
         </div>
       </div>
@@ -185,6 +195,68 @@
             <article class="relative pl-8 sm:pl-0"><span class="timeline_dot absolute left-[3px] top-1 size-3 rounded-full sm:hidden"></span><p class="text-xs font-bold accent_text" data-i18n="journey_benhil_date">Dec 2018 — May 2024</p><h3 class="mt-2 text-lg font-black">Benhil Digital Document Center</h3><p class="mt-1 text-sm font-semibold muted_text" data-i18n="journey_benhil_role">Graphic Design Operator</p><p class="mt-3 text-sm leading-6 muted_text" data-i18n="journey_benhil_desc">Desain materi promosi, konsultasi pra-cetak, dan koordinasi proses produksi cetak.</p></article>
           </div>
         </div>
+      </section>
+
+      <section id="articles" class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <div class="mb-8 max-w-3xl">
+          <p class="mb-3 text-xs font-black uppercase tracking-[.2em] accent_text" data-i18n="articles_kicker">Registry Magazine · Editorial</p>
+          <h2 class="text-3xl font-black tracking-[-.04em] sm:text-5xl"><span data-i18n="articles_title">Artikel & liputan</span><span class="accent_text">.</span></h2>
+          <p class="mt-3 max-w-2xl leading-7 muted_text" data-i18n="articles_description">Pengalaman saya di Registry Magazine mencakup peliputan dan wawancara narasumber, serta kurasi dan publikasi berita di website dan media sosial. Bagian ini disiapkan untuk menampilkan artikel asli beserta tautan publikasinya.</p>
+        </div>
+
+        <div class="grid gap-4 lg:grid-cols-3">
+          <article class="surface_card flex flex-col overflow-hidden rounded-[1.5rem]">
+            <div class="relative min-h-52 overflow-hidden border-b border-[var(--border)] bg-[linear-gradient(135deg,#24203f,#49456f_58%,#c9f36b)] p-5 sm:p-6" aria-hidden="true">
+              <div class="absolute -right-7 -top-8 size-40 rounded-full border border-white/20"></div>
+              <div class="absolute right-6 top-6 grid size-12 place-items-center rounded-2xl border border-white/25 bg-white/10 text-sm font-black text-white">01</div>
+              <p class="text-[10px] font-black uppercase tracking-[.22em] text-white/70">REGISTRY MAGAZINE</p>
+              <div class="absolute inset-x-5 bottom-5 sm:inset-x-6 sm:bottom-6">
+                <p class="text-[10px] font-bold uppercase tracking-[.2em] text-white/65">FIELD NOTES</p>
+                <p class="mt-2 max-w-[13rem] text-3xl font-black uppercase leading-[.95] tracking-[-.04em] text-white">Event<br>Coverage</p>
+              </div>
+            </div>
+            <div class="flex flex-1 flex-col p-5 sm:p-6">
+              <div class="mb-3 flex items-center justify-between gap-2"><span class="rounded-full bg-[var(--accent-soft)] px-3 py-1 text-[10px] font-bold accent_text" data-i18n="articles_focus_label">Fokus editorial</span><span class="text-xs font-black muted_text">01 / 03</span></div>
+              <h3 class="text-xl font-black tracking-tight" data-i18n="articles_card1_title">Peliputan Event</h3>
+              <p class="mt-3 flex-1 text-sm leading-6 muted_text" data-i18n="articles_card1_description">Meliput dan mendokumentasikan kegiatan untuk mendukung produksi konten majalah serta materi publikasi digital.</p>
+            </div>
+          </article>
+
+          <article class="surface_card flex flex-col overflow-hidden rounded-[1.5rem]">
+            <div class="relative min-h-52 overflow-hidden border-b border-[var(--border)] bg-[linear-gradient(135deg,#f1d8ce,#e6a99a_48%,#5148ff)] p-5 sm:p-6" aria-hidden="true">
+              <div class="absolute -bottom-12 -right-7 size-44 rounded-full border border-white/35"></div>
+              <div class="absolute right-6 top-6 grid size-12 place-items-center rounded-2xl border border-white/40 bg-white/20 text-sm font-black text-[#171717]">02</div>
+              <p class="text-[10px] font-black uppercase tracking-[.22em] text-[#171717]/65">PEOPLE · PERSPECTIVES</p>
+              <div class="absolute inset-x-5 bottom-5 sm:inset-x-6 sm:bottom-6">
+                <p class="text-[10px] font-bold uppercase tracking-[.2em] text-[#171717]/60">CONVERSATIONS</p>
+                <p class="mt-2 max-w-[13rem] text-3xl font-black uppercase leading-[.95] tracking-[-.04em] text-[#171717]">People<br>& Stories</p>
+              </div>
+            </div>
+            <div class="flex flex-1 flex-col p-5 sm:p-6">
+              <div class="mb-3 flex items-center justify-between gap-2"><span class="rounded-full bg-[var(--accent-soft)] px-3 py-1 text-[10px] font-bold accent_text" data-i18n="articles_focus_label">Fokus editorial</span><span class="text-xs font-black muted_text">02 / 03</span></div>
+              <h3 class="text-xl font-black tracking-tight" data-i18n="articles_card2_title">Wawancara Narasumber</h3>
+              <p class="mt-3 flex-1 text-sm leading-6 muted_text" data-i18n="articles_card2_description">Menggali informasi dari narasumber saat event sebagai bahan untuk menyusun konten yang relevan dan informatif.</p>
+            </div>
+          </article>
+
+          <article class="surface_card flex flex-col overflow-hidden rounded-[1.5rem]">
+            <div class="relative min-h-52 overflow-hidden border-b border-[var(--border)] bg-[linear-gradient(135deg,#dceee5,#a8d9c1_48%,#173b2c)] p-5 sm:p-6" aria-hidden="true">
+              <div class="absolute -left-8 -top-10 size-40 rounded-full border border-[#173b2c]/20"></div>
+              <div class="absolute right-6 top-6 grid size-12 place-items-center rounded-2xl border border-white/50 bg-white/25 text-sm font-black text-[#173b2c]">03</div>
+              <p class="text-[10px] font-black uppercase tracking-[.22em] text-[#173b2c]/65">EDITORIAL DESK</p>
+              <div class="absolute inset-x-5 bottom-5 sm:inset-x-6 sm:bottom-6">
+                <p class="text-[10px] font-bold uppercase tracking-[.2em] text-[#173b2c]/60">DIGITAL PUBLISHING</p>
+                <p class="mt-2 max-w-[13rem] text-3xl font-black uppercase leading-[.95] tracking-[-.04em] text-[#173b2c]">Digital<br>News</p>
+              </div>
+            </div>
+            <div class="flex flex-1 flex-col p-5 sm:p-6">
+              <div class="mb-3 flex items-center justify-between gap-2"><span class="rounded-full bg-[var(--accent-soft)] px-3 py-1 text-[10px] font-bold accent_text" data-i18n="articles_focus_label">Fokus editorial</span><span class="text-xs font-black muted_text">03 / 03</span></div>
+              <h3 class="text-xl font-black tracking-tight" data-i18n="articles_card3_title">Berita & Publikasi Digital</h3>
+              <p class="mt-3 flex-1 text-sm leading-6 muted_text" data-i18n="articles_card3_description">Mengkurasi, menyunting, dan mengelola berita untuk publikasi melalui website dan media sosial.</p>
+            </div>
+          </article>
+        </div>
+        <p class="mt-5 text-xs leading-5 muted_text" data-i18n="articles_section_note">Kerangka awal section editorial. Judul artikel dan tautan publikasi asli akan ditambahkan setelah artikel pilihan ditentukan.</p>
       </section>
 
       <section id="design" class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
@@ -292,6 +364,23 @@
         </div>
       </section>
 
+      <section id="education" class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <div class="mb-8 max-w-3xl">
+          <p class="mb-3 text-xs font-black uppercase tracking-[.2em] accent_text" data-i18n="education_kicker">Education</p>
+          <h2 class="text-3xl font-black tracking-[-.04em] sm:text-5xl"><span data-i18n="education_title">Pendidikan</span><span class="accent_text">.</span></h2>
+          <p class="mt-3 max-w-2xl leading-7 muted_text" data-i18n="education_description">Latar akademik yang menjadi dasar pemahaman saya terhadap sistem, data, proses, dan teknologi digital.</p>
+        </div>
+        <article class="surface_card grid gap-5 rounded-[1.5rem] p-6 sm:grid-cols-[auto_1fr] sm:items-center sm:p-8">
+          <div class="grid size-16 place-items-center rounded-2xl skill_icon text-2xl" aria-hidden="true">⌘</div>
+          <div>
+            <div class="flex flex-wrap items-center gap-3"><p class="text-xs font-bold accent_text" data-i18n="education_date">2018–2022</p><span class="rounded-full bg-[var(--accent-soft)] px-3 py-1 text-[10px] font-bold accent_text" data-i18n="education_label">Gelar sarjana</span></div>
+            <h3 class="mt-2 text-2xl font-black tracking-tight" data-i18n="education_university">Universitas Esa Unggul</h3>
+            <p class="mt-2 text-sm font-semibold muted_text" data-i18n="education_degree">S1 Sistem Informasi · IPK 3,6/4,0</p>
+            <p class="mt-3 max-w-3xl text-sm leading-6 muted_text" data-i18n="education_detail">Pendidikan di bidang Sistem Informasi yang mendukung pemahaman terhadap proses kerja, data, sistem, dan teknologi.</p>
+          </div>
+        </article>
+      </section>
+
       <section id="organization" class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div class="mb-8 max-w-3xl">
           <p class="mb-3 text-xs font-black uppercase tracking-[.2em] accent_text" data-i18n="organization_kicker">Organizational experience</p>
@@ -328,96 +417,7 @@
         </div>
       </section>
 
-      <section id="education" class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <div class="mb-8 max-w-3xl">
-          <p class="mb-3 text-xs font-black uppercase tracking-[.2em] accent_text" data-i18n="education_kicker">Education</p>
-          <h2 class="text-3xl font-black tracking-[-.04em] sm:text-5xl"><span data-i18n="education_title">Pendidikan</span><span class="accent_text">.</span></h2>
-          <p class="mt-3 max-w-2xl leading-7 muted_text" data-i18n="education_description">Latar akademik yang menjadi dasar pemahaman saya terhadap sistem, data, proses, dan teknologi digital.</p>
-        </div>
-        <article class="surface_card grid gap-5 rounded-[1.5rem] p-6 sm:grid-cols-[auto_1fr] sm:items-center sm:p-8">
-          <div class="grid size-16 place-items-center rounded-2xl skill_icon text-2xl" aria-hidden="true">⌘</div>
-          <div>
-            <div class="flex flex-wrap items-center gap-3"><p class="text-xs font-bold accent_text" data-i18n="education_date">2018–2022</p><span class="rounded-full bg-[var(--accent-soft)] px-3 py-1 text-[10px] font-bold accent_text" data-i18n="education_label">Gelar sarjana</span></div>
-            <h3 class="mt-2 text-2xl font-black tracking-tight" data-i18n="education_university">Universitas Esa Unggul</h3>
-            <p class="mt-2 text-sm font-semibold muted_text" data-i18n="education_degree">S1 Sistem Informasi · IPK 3,6/4,0</p>
-            <p class="mt-3 max-w-3xl text-sm leading-6 muted_text" data-i18n="education_detail">Pendidikan di bidang Sistem Informasi yang mendukung pemahaman terhadap proses kerja, data, sistem, dan teknologi.</p>
-          </div>
-        </article>
-      </section>
-
       <section id="certifications" class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div class="mb-8 max-w-3xl">
           <p class="mb-3 text-xs font-black uppercase tracking-[.2em] accent_text" data-i18n="certifications_kicker">Certifications & learning</p>
           <h2 class="text-3xl font-black tracking-[-.04em] sm:text-5xl"><span data-i18n="certifications_title">Sertifikasi dan pembelajaran</span><span class="accent_text">.</span></h2>
-          <p class="mt-3 max-w-2xl leading-7 muted_text" data-i18n="certifications_description">Sertifikasi kompetensi dan proyek pembelajaran yang relevan dengan kemampuan desain dan digital.</p>
-        </div>
-        <div class="grid gap-4 lg:grid-cols-2">
-          <article class="surface_card flex flex-col rounded-[1.5rem] p-6 sm:p-7">
-            <div class="mb-4 flex items-center justify-between gap-3"><span class="grid size-11 place-items-center rounded-2xl skill_icon" aria-hidden="true">✳</span><span class="rounded-full bg-[var(--accent-soft)] px-3 py-1 text-[10px] font-bold accent_text" data-i18n="cert_bnsp_label">Sertifikasi kompetensi</span></div>
-            <h3 class="text-xl font-black tracking-tight" data-i18n="cert_bnsp_title">BNSP — Junior Graphic Designer</h3>
-            <p class="mt-3 flex-1 text-sm leading-6 muted_text" data-i18n="cert_bnsp_description">Sertifikasi kompetensi di bidang desain grafis. Poster kesehatan di galeri menjadi contoh karya desain terkait.</p>
-            <a class="secondary_button mt-5 self-start" href="./assets/images/design-poster-kesehatan.png" target="_blank" rel="noopener noreferrer"><span data-i18n="cert_bnsp_evidence">Lihat karya terkait</span><span aria-hidden="true">↗</span></a>
-          </article>
-          <article class="surface_card flex flex-col rounded-[1.5rem] p-6 sm:p-7">
-            <div class="mb-4 flex items-center justify-between gap-3"><span class="grid size-11 place-items-center rounded-2xl skill_icon" aria-hidden="true">⌘</span><span class="rounded-full bg-[var(--accent-soft)] px-3 py-1 text-[10px] font-bold accent_text" data-i18n="cert_revou_label">Proyek pembelajaran</span></div>
-            <h3 class="text-xl font-black tracking-tight" data-i18n="cert_revou_title">RevoU — Life Dashboard</h3>
-            <p class="mt-3 flex-1 text-sm leading-6 muted_text" data-i18n="cert_revou_description">Life Dashboard saya kembangkan sebagai proyek pembelajaran untuk memperoleh sertifikat RevoU. Tautan ini membuka versi proyek yang sudah dipublikasikan.</p>
-            <a class="secondary_button mt-5 self-start" href="https://giyanseptiyanto.github.io/CodingCamp-19October2026-giyanseptiyanto/" target="_blank" rel="noopener noreferrer"><span data-i18n="cert_revou_project">Lihat proyek Life Dashboard</span><span aria-hidden="true">↗</span></a>
-          </article>
-        </div>
-        <p class="mt-4 text-xs muted_text" data-i18n="certifications_note">Tautan di atas membuka karya pendukung atau proyek terkait. Tautan sertifikat resmi dapat ditambahkan jika dokumen atau URL verifikasinya tersedia.</p>
-      </section>
-
-      <section id="notes" class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <div class="mb-8 max-w-3xl">
-          <p class="mb-3 text-xs font-black uppercase tracking-[.2em] accent_text" data-i18n="notes_kicker">Project notes · Ideas · Process</p>
-          <h2 class="text-3xl font-black tracking-[-.04em] sm:text-5xl" data-i18n="notes_title">Catatan di balik karya<span class="accent_text">.</span></h2>
-          <p class="mt-3 leading-7 muted_text" data-i18n="notes_description">Catatan singkat mengenai keputusan desain, pengalaman membangun website, dan pembelajaran dari proyek nyata.</p>
-        </div>
-        <div class="grid gap-4 lg:grid-cols-3">
-          <article class="note_card surface_card rounded-[1.5rem] p-5 sm:p-6">
-            <div class="mb-4 flex items-center justify-between gap-2"><span class="note_number">01</span><span class="note_category" data-i18n="notes_post1_category">Web App · UX</span></div>
-            <h3 class="text-xl font-black tracking-tight" data-i18n="notes_post1_title">Mendesain dashboard yang membantu, bukan mengganggu</h3>
-            <p class="mt-3 text-sm leading-6 muted_text" data-i18n="notes_post1_excerpt">Dashboard produktivitas harus membuat informasi penting lebih mudah dijangkau, bukan menambah distraksi.</p>
-            <details class="note_details mt-5">
-              <summary><span data-i18n="notes_read">Baca catatan</span><span class="note_plus" aria-hidden="true">+</span></summary>
-              <p class="mt-3 text-sm leading-6 muted_text" data-i18n="notes_post1_body">Life Dashboard menggabungkan to-do list, focus timer, quick links, serta informasi waktu dalam satu tempat. Tantangannya bukan menambah sebanyak mungkin fitur, melainkan menjaga tiap elemen tetap mudah dipahami. Setiap fitur idealnya membantu pengguna mengambil tindakan tanpa harus berpindah terlalu banyak halaman.</p>
-            </details>
-          </article>
-          <article class="note_card surface_card rounded-[1.5rem] p-5 sm:p-6">
-            <div class="mb-4 flex items-center justify-between gap-2"><span class="note_number">02</span><span class="note_category" data-i18n="notes_post2_category">Business Website</span></div>
-            <h3 class="text-xl font-black tracking-tight" data-i18n="notes_post2_title">Website bisnis harus mempermudah langkah berikutnya</h3>
-            <p class="mt-3 text-sm leading-6 muted_text" data-i18n="notes_post2_excerpt">Pengunjung perlu cepat memahami produk, melihat contohnya, dan tahu cara melakukan pemesanan.</p>
-            <details class="note_details mt-5">
-              <summary><span data-i18n="notes_read">Baca catatan</span><span class="note_plus" aria-hidden="true">+</span></summary>
-              <p class="mt-3 text-sm leading-6 muted_text" data-i18n="notes_post2_body">Website bisnis perlu menjawab beberapa pertanyaan penting: produk apa yang ditawarkan, seperti apa hasilnya, dan bagaimana cara memesan? Pada GYEP 3D Print, katalog, contoh produk, FAQ, serta jalur pemesanan WhatsApp mendukung kebutuhan itu. Alur yang jelas membantu pengunjung menemukan informasi dan tindakan yang dibutuhkan.</p>
-            </details>
-          </article>
-          <article class="note_card surface_card rounded-[1.5rem] p-5 sm:p-6">
-            <div class="mb-4 flex items-center justify-between gap-2"><span class="note_number">03</span><span class="note_category" data-i18n="notes_post3_category">Visual Design</span></div>
-            <h3 class="text-xl font-black tracking-tight" data-i18n="notes_post3_title">Desain yang baik dimulai dari tujuannya</h3>
-            <p class="mt-3 text-sm leading-6 muted_text" data-i18n="notes_post3_excerpt">Poster edukasi, banner promosi, dan desain kaos punya tujuan berbeda, jadi pendekatan visualnya juga perlu berbeda.</p>
-            <details class="note_details mt-5">
-              <summary><span data-i18n="notes_read">Baca catatan</span><span class="note_plus" aria-hidden="true">+</span></summary>
-              <p class="mt-3 text-sm leading-6 muted_text" data-i18n="notes_post3_body">Sebuah desain tidak hanya dinilai dari tampilannya, tetapi juga dari fungsi dan konteksnya. Poster edukasi perlu membantu informasi terbaca; banner promosi perlu menonjolkan produk dan informasi pemesanan; desain kaos perlu menyampaikan identitas visual. Hierarki dan format desain sebaiknya mengikuti tujuan materi.</p>
-            </details>
-          </article>
-        </div>
-      </section>
-
-      <section id="about" class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <div class="grid gap-4 lg:grid-cols-[.9fr_1.1fr]">
-          <div class="hero_pattern rounded-[1.5rem] border border-[var(--border)] p-7 sm:p-9"><p class="mb-3 text-xs font-black uppercase tracking-[.2em] accent_text" data-i18n="about_kicker">A little about me</p><h2 class="text-3xl font-black tracking-[-.04em] sm:text-4xl" data-i18n="about_title">Satu orang, beberapa sudut pandang<span class="accent_text">.</span></h2><p class="mt-4 leading-7 muted_text" data-i18n="about_description">Latar belakang Sistem Informasi membiasakan saya menghubungkan proses, data, desain, dan teknologi. Saya senang menata proses kerja sekaligus mengembangkan ide digital menjadi solusi yang dapat digunakan.</p></div>
-          <div class="surface_card rounded-[1.5rem] p-7 sm:p-9"><h3 class="text-xl font-black" data-i18n="about_highlights_title">Hal yang saya tawarkan</h3><div class="mt-5 grid gap-4 sm:grid-cols-2"><div class="rounded-2xl soft_surface p-4"><span class="text-xl">✳</span><h4 class="mt-3 font-black" data-i18n="about_highlight_1_title">Adaptif lintas fungsi</h4><p class="mt-2 text-sm leading-6 muted_text" data-i18n="about_highlight_1_desc">Terbiasa menangani kebutuhan yang beragam tanpa kehilangan fokus pada detail dan hasil.</p></div><div class="rounded-2xl soft_surface p-4"><span class="text-xl">⌘</span><h4 class="mt-3 font-black" data-i18n="about_highlight_2_title">Praktis dan digital</h4><p class="mt-2 text-sm leading-6 muted_text" data-i18n="about_highlight_2_desc">Memadukan tools digital, dokumentasi, dan kreativitas untuk menyelesaikan pekerjaan.</p></div></div></div>
-        </div>
-      </section>
-
-      <section id="contact" class="mx-auto max-w-7xl px-4 pb-16 pt-12 sm:px-6 sm:pb-24 sm:pt-16 lg:px-8">
-        <div class="relative overflow-hidden rounded-[2rem] bg-[#171717] px-6 py-9 text-white sm:px-10 sm:py-12 lg:px-14 lg:py-16"><div class="pointer-events-none absolute -right-12 -top-16 size-56 rounded-full bg-[#5148ff] opacity-70 blur-3xl"></div><div class="pointer-events-none absolute -bottom-20 left-[35%] size-48 rounded-full bg-[#c9f36b] opacity-40 blur-3xl"></div><div class="relative z-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end"><div><p class="mb-3 text-xs font-black uppercase tracking-[.2em] text-[#c9f36b]" data-i18n="contact_kicker">Let's connect</p><h2 class="max-w-3xl text-3xl font-black tracking-[-.04em] sm:text-5xl" data-i18n="contact_title">Ada peluang kerja atau ide kolaborasi yang ingin dibahas?</h2><p class="mt-4 max-w-2xl leading-7 text-white/65" data-i18n="contact_description">Hubungi saya untuk membahas peluang kerja, kolaborasi, atau proyek di bidang digital dan operasional.</p></div><div class="flex flex-wrap gap-3"><a class="inline-flex items-center gap-2 rounded-full bg-[#c9f36b] px-5 py-3 text-sm font-black text-[#171717] transition hover:-translate-y-0.5" href="mailto:giyanseptiyanto@gmail.com"><span data-i18n="contact_email">Kirim Email</span><span aria-hidden="true">↗</span></a><a class="inline-flex items-center gap-2 rounded-full border border-white/25 px-5 py-3 text-sm font-bold text-white transition hover:bg-white/10" href="https://wa.me/6285162918684" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a></div></div></div>
-      </section>
-    </main>
-
-    <footer class="border-t border-[var(--border)] px-4 py-6 sm:px-6 lg:px-8"><div class="mx-auto flex max-w-7xl flex-col gap-2 text-xs muted_text sm:flex-row sm:items-center sm:justify-between"><p>© <span id="currentYear"></span> Giyan Septiyanto. <span data-i18n="footer_rights">Dibuat dengan tujuan dan rasa ingin tahu.</span></p><a class="font-bold transition hover:accent_text" href="#home" data-i18n="footer_top">Kembali ke atas ↑</a></div></footer>
-  </div>
-</body>
-</html>
