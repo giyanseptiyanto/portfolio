@@ -1,5 +1,3 @@
-
-
 :root {
   color-scheme: light;
   --font-sans: "Inter", "Manrope", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -81,6 +79,11 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline: 3px solid
 }
 
 .filter_active { border-color: var(--accent) !important; background: var(--accent-soft) !important; }
+
+/* Visual gallery: four cards in one row on desktop, responsive below. */
+.design_grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+@media (min-width: 640px) { .design_grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; } }
+@media (min-width: 1024px) { .design_grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; } }
 
 .design_card { overflow: hidden; transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
 .design_card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 48%, var(--border)); box-shadow: 0 18px 48px rgb(0 0 0 / 9%); }
