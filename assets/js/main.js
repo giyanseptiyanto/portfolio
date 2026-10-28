@@ -1,14 +1,68 @@
 (() => {
   const root = document.documentElement;
+  // Keep the language key descriptive in the UI/runtime while migrating older saved values.
+  if (window.portfolioLanguages?.hy && !window.portfolioLanguages.hybrid) {
+    window.portfolioLanguages.hybrid = window.portfolioLanguages.hy;
+  }
+
+  const articleTranslations = {
+    id: {
+      nav_articles: 'Artikel',
+      articles_kicker: 'Registry Magazine · Editorial',
+      articles_title: 'Artikel & liputan',
+      articles_description: 'Pengalaman saya di Registry Magazine mencakup peliputan dan wawancara narasumber, serta kurasi dan publikasi berita di website dan media sosial. Bagian ini disiapkan untuk menampilkan artikel asli beserta tautan publikasinya.',
+      articles_focus_label: 'Fokus editorial',
+      articles_card1_title: 'Peliputan Event',
+      articles_card1_description: 'Meliput dan mendokumentasikan kegiatan untuk mendukung produksi konten majalah serta materi publikasi digital.',
+      articles_card2_title: 'Wawancara Narasumber',
+      articles_card2_description: 'Menggali informasi dari narasumber saat event sebagai bahan untuk menyusun konten yang relevan dan informatif.',
+      articles_card3_title: 'Berita & Publikasi Digital',
+      articles_card3_description: 'Mengkurasi, menyunting, dan mengelola berita untuk publikasi melalui website dan media sosial.',
+      articles_section_note: 'Kerangka awal section editorial. Judul artikel dan tautan publikasi asli akan ditambahkan setelah artikel pilihan ditentukan.'
+    },
+    en: {
+      nav_articles: 'Articles',
+      articles_kicker: 'Registry Magazine · Editorial',
+      articles_title: 'Articles & Coverage',
+      articles_description: 'My work at Registry Magazine included event coverage and interviews, along with curating and publishing news for the website and social media. This section is prepared to showcase published articles with their original links.',
+      articles_focus_label: 'Editorial focus',
+      articles_card1_title: 'Event Coverage',
+      articles_card1_description: 'Covering and documenting events to support magazine content production and digital publication.',
+      articles_card2_title: 'Interviews & Profiles',
+      articles_card2_description: 'Gathering information from event speakers as a basis for relevant, informative editorial content.',
+      articles_card3_title: 'News & Digital Publishing',
+      articles_card3_description: 'Curating, editing, and managing news content for publication on websites and social media.',
+      articles_section_note: 'Initial editorial section layout. Original article titles and publication links will be added once the selected pieces are confirmed.'
+    },
+    hybrid: {
+      nav_articles: 'Articles',
+      articles_kicker: 'Registry Magazine · Editorial',
+      articles_title: 'Articles & Liputan',
+      articles_description: 'Pengalaman saya di Registry Magazine includes event coverage and interviews, plus kurasi dan publikasi berita di website dan social media. Section ini disiapkan untuk menampilkan artikel asli beserta publication links.',
+      articles_focus_label: 'Editorial focus',
+      articles_card1_title: 'Event Coverage',
+      articles_card1_description: 'Meliput dan mendokumentasikan event untuk kebutuhan magazine content dan digital publication.',
+      articles_card2_title: 'Interviews & Profiles',
+      articles_card2_description: 'Menggali informasi dari narasumber saat event sebagai bahan untuk menyusun konten yang relevant dan informative.',
+      articles_card3_title: 'Digital News & Publishing',
+      articles_card3_description: 'Kurasi, editing, dan pengelolaan berita untuk publication di website dan social media.',
+      articles_section_note: 'Initial layout untuk editorial section. Judul artikel dan original publication links akan ditambahkan setelah artikel pilihan ditentukan.'
+    }
+  };
+
+  for (const [language, additions] of Object.entries(articleTranslations)) {
+    if (window.portfolioLanguages?.[language]) Object.assign(window.portfolioLanguages[language], additions);
+  }
   const languageSelect = document.querySelector('#languageSelect');
   const themeToggle = document.querySelector('#themeToggle');
   const themeIcon = document.querySelector('#themeIcon');
   const menuToggle = document.querySelector('#mobileMenuToggle');
   const mobileNav = document.querySelector('#mobileNav');
+  const desktopMoreMenu = document.querySelector('#desktopMoreMenu');
   const currentYear = document.querySelector('#currentYear');
   const filterButtons = [...document.querySelectorAll('[data-filter]')];
   const projectCards = [...document.querySelectorAll('[data-category]')];
-  const defaultLanguage = ['id', 'en', 'hy'].includes(root.dataset.language) ? root.dataset.language : 'hy';
+  const defaultLanguage = ['id', 'en', 'hybrid'].includes(root.dataset.language) ? root.dataset.language : 'hybrid';
 
   currentYear.textContent = new Date().getFullYear();
   languageSelect.value = defaultLanguage;
@@ -69,6 +123,26 @@
     menuToggle.setAttribute('aria-expanded', 'false');
   }));
 
+  // Close the More dropdown after navigation, outside clicks, or Escape.
+  desktopMoreMenu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+    desktopMoreMenu.open = false;
+  }));
+  document.addEventListener('click', (event) => {
+    if (desktopMoreMenu?.open && !desktopMoreMenu.contains(event.target)) desktopMoreMenu.open = false;
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    if (desktopMoreMenu?.open) {
+      desktopMoreMenu.open = false;
+      desktopMoreMenu.querySelector('summary')?.focus();
+    }
+    if (!mobileNav.classList.contains('hidden')) {
+      mobileNav.classList.add('hidden');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.focus();
+    }
+  });
+
   filterButtons.forEach((button) => button.addEventListener('click', () => {
     const filter = button.dataset.filter;
     filterButtons.forEach((item) => {
@@ -81,7 +155,7 @@
     });
   }));
 
-  const revealTargets = document.querySelectorAll('#work > div, #skills article, #journey article, #organization article, #education article, #certifications article, #about > div');
+  const revealTargets = document.querySelectorAll('#work > div, #skills article, #journey article, #articles article, #organization article, #education article, #certifications article, #about > div');
   if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
