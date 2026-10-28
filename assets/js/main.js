@@ -8,7 +8,7 @@
   const currentYear = document.querySelector('#currentYear');
   const filterButtons = [...document.querySelectorAll('[data-filter]')];
   const projectCards = [...document.querySelectorAll('[data-category]')];
-  const defaultLanguage = ['id', 'en', 'mix'].includes(root.lang) ? root.lang : 'id';
+  const defaultLanguage = ['id', 'en', 'mix'].includes(root.dataset.language) ? root.dataset.language : 'mix';
 
   currentYear.textContent = new Date().getFullYear();
   languageSelect.value = defaultLanguage;
@@ -16,6 +16,7 @@
   function applyLanguage(language) {
     const translations = window.portfolioLanguages?.[language] || window.portfolioLanguages?.id;
     if (!translations) return;
+    root.dataset.language = language;
     root.lang = language === 'en' ? 'en' : 'id';
     document.querySelectorAll('[data-i18n]').forEach((node) => {
       const key = node.dataset.i18n;
@@ -35,7 +36,7 @@
     languageSelect.setAttribute('aria-label', translations.language_label || 'Choose language');
     themeToggle.setAttribute('aria-label', root.dataset.theme === 'dark' ? translations.theme_light : translations.theme_dark);
     menuToggle.setAttribute('aria-label', mobileNav.classList.contains('hidden') ? translations.menu_open : translations.menu_close);
-    try { localStorage.setItem('giyan-language', language); } catch (error) { /* Storage may be unavailable. */ }
+    try { localStorage.setItem('giyan-language-v2', language); } catch (error) { /* Storage may be unavailable. */ }
   }
 
   function applyTheme(theme, save = true) {
