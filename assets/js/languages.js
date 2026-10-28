@@ -1,6 +1,6 @@
 window.portfolioLanguages = {
   id: {
-    nav_home: 'Beranda', nav_work: 'Karya', nav_design: 'Desain', nav_about: 'Tentang', nav_contact: 'Kontak', nav_credentials: 'Pendidikan & Sertifikat', language_label: 'Pilih bahasa',
+    nav_home: 'Beranda', nav_work: 'Karya', nav_design: 'Desain', nav_about: 'Tentang', nav_contact: 'Kontak', nav_more: 'Lainnya', nav_credentials: 'Pendidikan & Sertifikat', language_label: 'Pilih bahasa',
     hero_eyebrow: 'Administrasi · Operasional · Digital', hero_headline_a: 'Beragam keterampilan.', hero_headline_b: 'Kerja nyata.', hero_headline_c: 'Satu portfolio.',
     hero_description: 'Saya Giyan. Saya menggabungkan kemampuan administrasi, operasional, dan digital untuk membantu pekerjaan berjalan lebih rapi—mulai dari pengelolaan data hingga website dan konten.',
     hero_cta_work: 'Lihat Karya', hero_cta_cv: 'Minta CV', hero_note: 'Terbuka untuk peluang kerja dan kolaborasi.', hero_badge_left: 'Lintas bidang', hero_badge_right: 'Jakarta, Indonesia',
@@ -69,7 +69,7 @@ window.portfolioLanguages = {
 
   },
   en: {
-    nav_home: 'Home', nav_work: 'Work', nav_design: 'Design', nav_about: 'About', nav_contact: 'Contact', nav_credentials: 'Credentials', language_label: 'Choose language',
+    nav_home: 'Home', nav_work: 'Work', nav_design: 'Design', nav_about: 'About', nav_contact: 'Contact', nav_more: 'More', nav_credentials: 'Credentials', language_label: 'Choose language',
     hero_eyebrow: 'Administrative · Operational · Digital Generalist', hero_headline_a: 'Different skills.', hero_headline_b: 'Real work.', hero_headline_c: 'One portfolio.',
     hero_description: 'I’m Giyan. I combine administrative, operational, and digital skills to make work run more smoothly—from data management to websites and content.',
     hero_cta_work: 'Explore My Work', hero_cta_cv: 'Request CV', hero_note: 'Open to opportunities and collaboration.', hero_badge_left: 'Multi-disciplinary', hero_badge_right: 'Jakarta, Indonesia',
@@ -138,7 +138,7 @@ window.portfolioLanguages = {
 
   },
   hy: {
-    nav_home: 'Home', nav_work: 'Work', nav_design: 'Design', nav_about: 'About', nav_contact: 'Contact', nav_credentials: 'Credentials', language_label: 'Choose language',
+    nav_home: 'Home', nav_work: 'Work', nav_design: 'Design', nav_about: 'About', nav_contact: 'Contact', nav_more: 'More', nav_credentials: 'Credentials', language_label: 'Choose language',
     hero_eyebrow: 'Administrative · Operational · Digital Generalist', hero_headline_a: 'Different skills.', hero_headline_b: 'Real work.', hero_headline_c: 'One portfolio.',
     hero_description: 'Saya Giyan. Saya menggabungkan kemampuan administrasi, operasional, dan digital untuk membantu pekerjaan berjalan lebih rapi—mulai dari pengelolaan data hingga website dan konten.',
     hero_cta_work: 'Explore My Work', hero_cta_cv: 'Request CV', hero_note: 'Terbuka untuk peluang kerja dan kolaborasi.', hero_badge_left: 'Multi-disciplinary', hero_badge_right: 'Jakarta, Indonesia',
