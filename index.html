@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5f5f0">
   <meta name="description" content="Portfolio Giyan Septiyanto: pengalaman administrasi, operasional, digital, website, desain visual, dan e-commerce.">
-  <meta property="og:title" content="Giyan Septiyanto - Personal Portfolio">
+  <meta property="og:title" content="Giyan Septiyanto — Personal Portfolio">
   <meta property="og:description" content="Different skills. Real work. One portfolio.">
   <meta property="og:type" content="website">
-  <title>Giyan Septiyanto - Personal Portfolio</title>
+  <title>Giyan Septiyanto — Personal Portfolio</title>
   <link rel="stylesheet" href="./assets/css/tailwind.generated.css">
   <link rel="stylesheet" href="./assets/css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -19,17 +19,20 @@
         const storedTheme = localStorage.getItem('giyan-theme');
         root.dataset.theme = (storedTheme === 'dark' || storedTheme === 'light') ? storedTheme : 'light';
 
-        // Versioned preference key: use Mix as the new default, while preserving explicit legacy EN/Mix choices.
+        // Versioned preference key: use the HY (Hybrid) display mode as the default, while preserving saved language preferences.
         const currentLanguage = localStorage.getItem('giyan-language-v2');
         const legacyLanguage = localStorage.getItem('giyan-language');
-        const initialLanguage = ['id', 'en', 'mix'].includes(currentLanguage)
-          ? currentLanguage
-          : (legacyLanguage === 'en' || legacyLanguage === 'mix' ? legacyLanguage : 'mix');
+        const normalizeLanguage = (language) => language === 'mix' ? 'hy' : language;
+        const savedLanguage = normalizeLanguage(currentLanguage);
+        const savedLegacyLanguage = normalizeLanguage(legacyLanguage);
+        const initialLanguage = ['id', 'en', 'hy'].includes(savedLanguage)
+          ? savedLanguage
+          : (savedLegacyLanguage === 'en' || savedLegacyLanguage === 'hy' ? savedLegacyLanguage : 'hy');
         root.dataset.language = initialLanguage;
         root.lang = initialLanguage === 'en' ? 'en' : 'id';
       } catch (error) {
         root.dataset.theme = 'light';
-        root.dataset.language = 'mix';
+        root.dataset.language = 'hy';
         root.lang = 'id';
       }
     })();
@@ -66,7 +69,7 @@
           <select id="languageSelect" class="pill_control max-w-[116px] rounded-full px-3 py-2 text-xs font-bold sm:max-w-none" aria-label="Pilih bahasa">
             <option value="id">ID · Indonesia</option>
             <option value="en">EN · English</option>
-            <option value="mix" selected>ID/EN · Mix</option>
+            <option value="hy" selected>ID/EN · HY</option>
           </select>
           <button id="themeToggle" class="pill_control grid size-10 place-items-center rounded-full" type="button" aria-label="Ganti tema" title="Ganti tema">
             <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
