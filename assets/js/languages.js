@@ -137,7 +137,7 @@ window.portfolioLanguages = {
     certifications_note: "The links above open related work samples or projects. Official certificate links can be added when the document or verification URL is available."
 
   },
-  mix: {
+  hy: {
     nav_home: 'Home', nav_work: 'Work', nav_design: 'Design', nav_about: 'About', nav_contact: 'Contact', nav_credentials: 'Credentials', language_label: 'Choose language',
     hero_eyebrow: 'Administrative · Operational · Digital Generalist', hero_headline_a: 'Different skills.', hero_headline_b: 'Real work.', hero_headline_c: 'One portfolio.',
     hero_description: 'Saya Giyan. Saya menggabungkan kemampuan administrasi, operasional, dan digital untuk membantu pekerjaan berjalan lebih rapi—mulai dari pengelolaan data hingga website dan konten.',
