@@ -8,7 +8,7 @@
   const currentYear = document.querySelector('#currentYear');
   const filterButtons = [...document.querySelectorAll('[data-filter]')];
   const projectCards = [...document.querySelectorAll('[data-category]')];
-  const defaultLanguage = ['id', 'en', 'mix'].includes(root.dataset.language) ? root.dataset.language : 'mix';
+  const defaultLanguage = ['id', 'en', 'hy'].includes(root.dataset.language) ? root.dataset.language : 'hy';
 
   currentYear.textContent = new Date().getFullYear();
   languageSelect.value = defaultLanguage;
