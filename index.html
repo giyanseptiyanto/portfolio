@@ -39,6 +39,46 @@
     <script src="./assets/js/languages.js" defer></script>
     <script src="./assets/js/projects.js" defer></script>
     <script src="./assets/js/main.js" defer></script>
+    <script>
+      (() => {
+        const normalizeDashes = (node) => {
+          if (node.nodeType === Node.TEXT_NODE) {
+            if (node.nodeValue.includes("\u2014")) {
+              node.nodeValue = node.nodeValue.replace(/\u2014/g, "-");
+            }
+            return;
+          }
+
+          node.childNodes.forEach(normalizeDashes);
+        };
+
+        const watchText = () => {
+          normalizeDashes(document.body);
+
+          const observer = new MutationObserver((records) => {
+            records.forEach((record) => {
+              if (record.type === "characterData") {
+                normalizeDashes(record.target);
+              }
+
+              record.addedNodes.forEach(normalizeDashes);
+            });
+          });
+
+          observer.observe(document.body, {
+            childList: true,
+            characterData: true,
+            subtree: true
+          });
+        };
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", watchText, { once: true });
+        } else {
+          watchText();
+        }
+      })();
+    </script>
   </head>
   <body class="min-h-screen antialiased">
     <div class="site_shell min-h-screen">
