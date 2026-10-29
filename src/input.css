@@ -115,4 +115,3 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline: 3px solid
   .nav_controls { gap: .35rem; }
   .language_select { width: 3.9rem; max-width: 3.9rem; padding-inline: .5rem; }
 }
-
