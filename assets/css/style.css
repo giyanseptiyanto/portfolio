@@ -128,3 +128,50 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline: 3px solid
 .org_certificate_link strong { font-size: .78rem; line-height: 1.35; }
 .org_certificate_link small { margin-top: .25rem; color: var(--muted); font-size: .7rem; }
 @media (max-width: 639px) { .org_certificate_link img { width: 4.75rem; height: 3.1rem; flex-basis: 4.75rem; } }
+
+/* v2.0.0: cleaner navigation, larger type, and a true vertical dropdown. */
+.site_nav { min-height: 4.75rem; }
+.site_brand { font-size: 1rem; letter-spacing: -.035em; }
+.header_actions { margin-left: auto; gap: 1rem; }
+.desktop_nav { display: flex; flex-wrap: nowrap; align-items: center; gap: .2rem; }
+.desktop_nav_link { display: inline-flex; align-items: center; justify-content: center; min-height: 2.65rem; border-radius: 999px; padding: .65rem .72rem; font-size: .9rem; line-height: 1.2; }
+.desktop_nav_link:hover { background: var(--surface-soft); }
+.nav_more { position: relative; flex: 0 0 auto; }
+.nav_more_trigger { display: inline-flex; align-items: center; justify-content: center; gap: .4rem; min-height: 2.65rem; padding: .65rem .8rem; cursor: pointer; list-style: none; font-size: .9rem; line-height: 1.2; transition: color .18s ease, background-color .18s ease; }
+.nav_more_trigger::-webkit-details-marker { display: none !important; }
+.nav_more_trigger::marker { content: ""; display: none; }
+.nav_more_trigger:hover, .nav_more[open] > .nav_more_trigger { background: var(--surface-soft); color: var(--text); }
+.nav_more_chevron { display: block; flex: 0 0 auto; transition: transform .18s ease; }
+.nav_more[open] > .nav_more_trigger .nav_more_chevron { transform: rotate(180deg); }
+/* Force a positioned panel and a single column so items never spill into the navbar row. */
+#desktopMoreMenu:not([open]) > .nav_dropdown { display: none !important; }
+#desktopMoreMenu[open] > .nav_dropdown { position: absolute !important; top: calc(100% + .6rem) !important; right: 0 !important; z-index: 100 !important; display: grid !important; grid-template-columns: minmax(0, 1fr) !important; grid-auto-flow: row !important; gap: .1rem; width: max-content; min-width: 14rem; max-width: min(18rem, calc(100vw - 2rem)); padding: .45rem; border: 1px solid var(--border); border-radius: 1rem; background: var(--surface); box-shadow: var(--shadow); }
+.nav_dropdown_link { display: flex; width: 100%; align-items: center; min-height: 2.65rem; border-radius: .65rem; padding: .65rem .8rem; color: var(--muted); font-size: .9rem; line-height: 1.25; font-weight: 600; text-decoration: none; transition: color .16s ease, background-color .16s ease; }
+.nav_dropdown_link:hover, .nav_dropdown_link:focus-visible { background: var(--surface-soft); color: var(--text); }
+.nav_contact_button { display: inline-flex; align-items: center; justify-content: center; min-height: 2.65rem; border: 1px solid var(--text); border-radius: 999px; background: var(--text); padding: .65rem 1rem; color: var(--page); font-size: .9rem; line-height: 1.2; text-decoration: none; transition: transform .18s ease, opacity .18s ease; }
+.nav_contact_button:hover { transform: translateY(-1px); opacity: .9; }
+.language_select { width: 4.65rem; max-width: 4.65rem; font-size: .875rem; }
+.nav_controls { gap: .5rem; }
+.mobile_nav_grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.mobile_nav_grid .nav_link { min-width: 0; font-size: .95rem; }
+@media (max-width: 1279px) and (min-width: 1024px) {
+  .header_actions { gap: .5rem; }
+  .desktop_nav { gap: 0; }
+  .desktop_nav_link { padding-inline: .55rem; font-size: .86rem; }
+  .nav_more_trigger { padding-inline: .6rem; font-size: .86rem; }
+  .nav_contact_button { padding-inline: .8rem; font-size: .86rem; }
+  .language_select { width: 4.2rem; max-width: 4.2rem; }
+}
+@media (max-width: 1023px) {
+  .desktop_nav { display: none !important; }
+  #desktopMoreMenu > .nav_dropdown { display: none !important; }
+  .header_actions { gap: 0; }
+}
+@media (max-width: 639px) {
+  .site_nav { min-height: 4.25rem; }
+  .mobile_nav_grid { grid-template-columns: 1fr; }
+  .site_brand { gap: .45rem; }
+  .site_brand > span:last-child { font-size: .95rem; }
+  .nav_controls { gap: .35rem; }
+  .language_select { width: 4rem; max-width: 4rem; padding-inline: .5rem; }
+}
