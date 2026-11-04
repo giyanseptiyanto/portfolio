@@ -1,8 +1,8 @@
 {
   "name": "giyan-personal-portfolio",
-  "version": "2.1.0",
+  "version": "2.4.0",
   "private": true,
-  "description": "Personal portfolio of Giyan Septiyanto built with HTML, Tailwind CSS v4, and vanilla JavaScript.",
+  "description": "Personal portfolio of Giyan Septiyanto. index.html is the content source of truth; Tailwind CSS v4 and vanilla JavaScript adapt to its structure and copy.",
   "scripts": {
     "dev:css": "@tailwindcss/cli -i ./src/input.css -o ./assets/css/tailwind.generated.css --watch",
     "build:css": "@tailwindcss/cli -i ./src/input.css -o ./assets/css/tailwind.generated.css --minify"
