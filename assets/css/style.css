@@ -120,7 +120,7 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline: 3px solid
 @media (max-width: 380px) { .tools_grid { grid-template-columns: 1fr; } }
 
 
-/* v7: compact evidence link for the UI Vocational Expo organization certificate. */
+/* v2.1.0: reusable certificate preview links for organization and certification cards. */
 .org_certificate_link { display: flex; align-items: center; gap: .85rem; border: 1px solid var(--border); border-radius: 1rem; background: var(--surface-soft); padding: .65rem; color: var(--text); text-decoration: none; transition: border-color .2s ease, transform .2s ease; }
 .org_certificate_link:hover { border-color: var(--accent); transform: translateY(-2px); }
 .org_certificate_link img { width: 5.5rem; height: 3.6rem; flex: 0 0 5.5rem; object-fit: cover; border-radius: .55rem; border: 1px solid var(--border); background: var(--surface); }
@@ -128,6 +128,10 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline: 3px solid
 .org_certificate_link strong { font-size: .78rem; line-height: 1.35; }
 .org_certificate_link small { margin-top: .25rem; color: var(--muted); font-size: .7rem; }
 @media (max-width: 639px) { .org_certificate_link img { width: 4.75rem; height: 3.1rem; flex-basis: 4.75rem; } }
+.org_certificate_link.certificate_link_pending { cursor: default; border-style: dashed; opacity: .92; }
+.org_certificate_link.certificate_link_pending:hover { border-color: var(--border); transform: none; }
+.org_certificate_link.certificate_link_pending small { color: var(--muted); }
+.org_certificate_link .certificate_placeholder_image { object-fit: cover; }
 
 /* v2.0.0: cleaner navigation, larger type, and a true vertical dropdown. */
 .site_nav { min-height: 4.75rem; }
