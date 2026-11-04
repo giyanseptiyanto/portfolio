@@ -64,6 +64,23 @@
   const projectCards = [...document.querySelectorAll('[data-category]')];
   const defaultLanguage = ['id', 'en', 'hybrid'].includes(root.dataset.language) ? root.dataset.language : 'hybrid';
 
+  // Certificate panels remain visibly marked and non-clickable until a real URL is supplied.
+  document.querySelectorAll('.certificate_preview_link[data-certificate-url]').forEach((link) => {
+    const certificateUrl = (link.dataset.certificateUrl || '').trim();
+    if (!certificateUrl) {
+      link.href = '#';
+      link.classList.add('certificate_link_pending');
+      link.setAttribute('aria-disabled', 'true');
+      link.addEventListener('click', (event) => event.preventDefault());
+      return;
+    }
+    link.href = certificateUrl;
+    link.classList.remove('certificate_link_pending');
+    link.removeAttribute('aria-disabled');
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
+  });
+
   currentYear.textContent = new Date().getFullYear();
   languageSelect.value = defaultLanguage;
 
