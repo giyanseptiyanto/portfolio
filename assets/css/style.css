@@ -80,10 +80,13 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline: 3px solid
 
 .filter_active { border-color: var(--accent) !important; background: var(--accent-soft) !important; }
 
-/* Visual gallery: keep all four artwork cards in a single horizontal row. */
+/* Visual gallery follows the current HTML layout: four columns on desktop, two on tablet, one on mobile. */
 .design_grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
 @media (max-width: 1023px) {
-  .design_grid { grid-template-columns: repeat(4, minmax(240px, 1fr)); overflow-x: auto; overscroll-behavior-x: contain; padding-bottom: .5rem; }
+  .design_grid { grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; overscroll-behavior-x: auto; padding-bottom: 0; }
+}
+@media (max-width: 639px) {
+  .design_grid { grid-template-columns: minmax(0, 1fr); }
 }
 
 .design_card { overflow: hidden; transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
