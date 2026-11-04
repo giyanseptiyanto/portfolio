@@ -36,6 +36,7 @@ window.portfolioLanguages = {
     organization_dpm_title: "Dewan Perwakilan Mahasiswa Fakultas",
     organization_dpm_role: "Koordinator Komunikasi dan Informasi",
     organization_dpm_description: "Mendukung koordinasi komunikasi dan penyampaian informasi dalam kegiatan organisasi fakultas.",
+    organization_dpm_evidence: "Sertifikat organisasi",
     organization_expo_date: "20–21 November 2020",
     organization_expo_title: "Universitas Indonesia Vocational Expo",
     organization_expo_role: "Staf Desain",
@@ -46,6 +47,8 @@ window.portfolioLanguages = {
     organization_hima_title: "Himpunan Mahasiswa Sistem Informasi",
     organization_hima_role: "Staf Divisi Minat dan Bakat",
     organization_hima_description: "Menjadi bagian dari Divisi Minat dan Bakat di Himpunan Mahasiswa Sistem Informasi.",
+    organization_hima_evidence: "Sertifikat organisasi",
+    certificate_link_pending: "Sertifikat menyusul",
     education_kicker: "Pendidikan",
     education_title: "Pendidikan",
     education_description: "Latar akademik yang menjadi dasar pemahaman saya terhadap sistem, data, proses, dan teknologi digital.",
@@ -60,12 +63,14 @@ window.portfolioLanguages = {
     cert_bnsp_label: "Sertifikasi kompetensi",
     cert_bnsp_title: "BNSP — Junior Graphic Designer",
     cert_bnsp_description: "Sertifikasi kompetensi di bidang desain grafis. Poster kesehatan di galeri dibuat sebagai bagian dari proses sertifikasi.",
+    cert_bnsp_certificate_link: "Sertifikat resmi BNSP",
     cert_bnsp_evidence: "Lihat karya terkait",
     cert_revou_label: "Proyek pembelajaran",
     cert_revou_title: "RevoU — Life Dashboard",
     cert_revou_description: "Life Dashboard saya kembangkan sebagai proyek pembelajaran untuk memperoleh sertifikat RevoU. Tautan ini membuka versi proyek yang sudah dipublikasikan.",
     cert_revou_project: "Lihat proyek Life Dashboard",
-    certifications_note: "Tautan di atas membuka karya pendukung atau proyek terkait. Tautan sertifikat resmi dapat ditambahkan jika dokumen atau URL verifikasinya tersedia."
+    cert_revou_certificate_link: "Sertifikat RevoU",
+    certifications_note: "Panel sertifikat yang masih berupa placeholder dapat diaktifkan dengan mengisi atribut data-certificate-url di index.html. Ganti gambar placeholder dengan preview sertifikat asli jika tersedia."
 
   },
   en: {
@@ -105,6 +110,7 @@ window.portfolioLanguages = {
     organization_dpm_title: "Faculty Student Representative Council",
     organization_dpm_role: "Communication and Information Coordinator",
     organization_dpm_description: "Supported communication coordination and information sharing for faculty-level student organization activities.",
+    organization_dpm_evidence: "Organization certificate",
     organization_expo_date: "20–21 Nov 2020",
     organization_expo_title: "Universitas Indonesia Vocational Expo",
     organization_expo_role: "Design Staff",
@@ -115,6 +121,8 @@ window.portfolioLanguages = {
     organization_hima_title: "Information Systems Student Association",
     organization_hima_role: "Interest and Talent Division Staff",
     organization_hima_description: "Served as a staff member in the Interest and Talent Division of the Information Systems Student Association.",
+    organization_hima_evidence: "Organization certificate",
+    certificate_link_pending: "Certificate coming soon",
     education_kicker: "Education",
     education_title: "Education",
     education_description: "My academic background provides a foundation for understanding systems, data, processes, and digital technology.",
@@ -129,12 +137,14 @@ window.portfolioLanguages = {
     cert_bnsp_label: "Professional certification",
     cert_bnsp_title: "BNSP — Junior Graphic Designer",
     cert_bnsp_description: "A graphic design competency certification. The health poster in the gallery was created as part of the certification process.",
+    cert_bnsp_certificate_link: "Official BNSP certificate",
     cert_bnsp_evidence: "View related work",
     cert_revou_label: "Learning project",
     cert_revou_title: "RevoU — Life Dashboard",
     cert_revou_description: "I developed Life Dashboard as a learning project toward earning a RevoU certificate. This link opens the published project.",
     cert_revou_project: "View Life Dashboard project",
-    certifications_note: "The links above open related work samples or projects. Official certificate links can be added when the document or verification URL is available."
+    cert_revou_certificate_link: "RevoU certificate",
+    certifications_note: "Official certificate links will be available once the documents are ready to share."
 
   },
   hy: {
@@ -174,6 +184,7 @@ window.portfolioLanguages = {
     organization_dpm_title: "Faculty Student Representative Council",
     organization_dpm_role: "Communication and Information Coordinator",
     organization_dpm_description: "Mendukung koordinasi komunikasi dan penyampaian informasi dalam kegiatan organisasi fakultas.",
+    organization_dpm_evidence: "Organization certificate",
     organization_expo_date: "20–21 Nov 2020",
     organization_expo_title: "Universitas Indonesia Vocational Expo",
     organization_expo_role: "Design Staff",
@@ -184,6 +195,8 @@ window.portfolioLanguages = {
     organization_hima_title: "Information Systems Student Association",
     organization_hima_role: "Interest and Talent Division Staff",
     organization_hima_description: "Menjadi bagian dari Divisi Minat dan Bakat di Himpunan Mahasiswa Sistem Informasi.",
+    organization_hima_evidence: "Organization certificate",
+    certificate_link_pending: "Certificate coming soon",
     education_kicker: "Education",
     education_title: "Education",
     education_description: "Latar akademik yang menjadi dasar pemahaman saya terhadap sistem, data, proses, dan teknologi digital.",
@@ -198,12 +211,14 @@ window.portfolioLanguages = {
     cert_bnsp_label: "Professional certification",
     cert_bnsp_title: "BNSP — Junior Graphic Designer",
     cert_bnsp_description: "Sertifikasi kompetensi di bidang desain grafis. Poster kesehatan di galeri dibuat sebagai bagian dari proses sertifikasi.",
+    cert_bnsp_certificate_link: "Official BNSP certificate",
     cert_bnsp_evidence: "View related work",
     cert_revou_label: "Learning project",
     cert_revou_title: "RevoU — Life Dashboard",
     cert_revou_description: "Life Dashboard saya kembangkan sebagai proyek pembelajaran untuk memperoleh sertifikat RevoU. Tautan ini membuka versi proyek yang sudah dipublikasikan.",
     cert_revou_project: "View Life Dashboard project",
-    certifications_note: "Tautan di atas membuka karya pendukung atau proyek terkait. Tautan sertifikat resmi dapat ditambahkan jika dokumen atau URL verifikasinya tersedia."
+    cert_revou_certificate_link: "RevoU certificate",
+    certifications_note: "Official certificate links will be available once the documents are ready to share."
 
   }
 };
