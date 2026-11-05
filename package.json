@@ -1,6 +1,6 @@
 {
   "name": "giyan-personal-portfolio",
-  "version": "3.1.0",
+  "version": "3.2.1",
   "private": true,
   "description": "Personal portfolio of Giyan Septiyanto. Static HTML, Tailwind CSS v4, and vanilla JavaScript.",
   "scripts": {
