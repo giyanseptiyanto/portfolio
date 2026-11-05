@@ -183,12 +183,15 @@
   function initializeCertificateLinks() {
     document.querySelectorAll('.certificate_preview_link[data-certificate-url]').forEach((link) => {
       const certificateUrl = (link.dataset.certificateUrl || '').trim();
+      const statusLabel = link.querySelector('small[data-i18n]');
 
       if (!certificateUrl) {
         link.removeAttribute('href');
         link.classList.add('certificate_link_pending');
         link.setAttribute('aria-disabled', 'true');
         link.setAttribute('tabindex', '-1');
+
+        if (statusLabel) statusLabel.dataset.i18n = 'certificate_link_pending';
         return;
       }
 
@@ -198,6 +201,13 @@
       link.removeAttribute('tabindex');
       link.setAttribute('target', '_blank');
       link.setAttribute('rel', 'noopener noreferrer');
+
+      // Some certificate cards still carried the old "link pending" label
+      // even though their data-certificate-url was already populated.
+      // Promote that label to the ready state before translations are applied.
+      if (statusLabel && statusLabel.dataset.i18n === 'certificate_link_pending') {
+        statusLabel.dataset.i18n = link.dataset.certificateReadyI18n || 'organization_view_certificate';
+      }
     });
   }
 
