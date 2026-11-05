@@ -1,4 +1,4 @@
-# Giyan Septiyanto — Personal Portfolio
+# Giyan Septiyanto - Personal Portfolio
 
 Responsive single-page portfolio built with HTML5, Tailwind CSS v4, custom CSS, and vanilla JavaScript.
 
