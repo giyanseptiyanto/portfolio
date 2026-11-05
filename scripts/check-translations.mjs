@@ -48,8 +48,11 @@ for (const value of requiredLanguages) {
   }
 }
 
-if (!html.includes('src="./assets/js/languages.js?v=24"')) {
-  errors.push("Language script cache version is missing or outdated.");
+const languageScriptVersion = html.match(/src="\.\/assets\/js\/languages\.js\?v=(\d+)"/)?.[1];
+const mainScriptVersion = html.match(/src="\.\/assets\/js\/main\.js\?v=(\d+)"/)?.[1];
+
+if (!languageScriptVersion || !mainScriptVersion || languageScriptVersion !== mainScriptVersion) {
+  errors.push("Language and main script cache versions must both exist and match.");
 }
 
 if (!html.includes('<html lang="en"') || !html.includes('data-language="en"')) {
