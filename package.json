@@ -1,14 +1,16 @@
 {
   "name": "giyan-personal-portfolio",
-  "version": "2.4.0",
+  "version": "2.8.0",
   "private": true,
-  "description": "Personal portfolio of Giyan Septiyanto. index.html is the content source of truth; Tailwind CSS v4 and vanilla JavaScript adapt to its structure and copy.",
+  "description": "Personal portfolio of Giyan Septiyanto. Static HTML, Tailwind CSS v4, and vanilla JavaScript.",
   "scripts": {
-    "dev:css": "@tailwindcss/cli -i ./src/input.css -o ./assets/css/tailwind.generated.css --watch",
-    "build:css": "@tailwindcss/cli -i ./src/input.css -o ./assets/css/tailwind.generated.css --minify"
+    "dev:css": "tailwindcss -i ./src/input.css -o ./assets/css/tailwind.generated.css --watch",
+    "build:css": "tailwindcss -i ./src/input.css -o ./assets/css/tailwind.generated.css --minify",
+    "build": "npm run build:css",
+    "check:js": "node --check ./assets/js/main.js && node --check ./assets/js/languages.js && node --check ./assets/js/projects.js"
   },
   "devDependencies": {
-    "@tailwindcss/cli": "^4.1.18",
-    "tailwindcss": "^4.1.18"
+    "@tailwindcss/cli": "4.1.18",
+    "tailwindcss": "4.1.18"
   }
 }
