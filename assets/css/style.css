@@ -138,6 +138,18 @@ button:focus-visible, a:focus-visible, select:focus-visible { outline: 3px solid
 .tool_html { color: #fff; background: #e96228; font-size: .65rem; } .tool_css { color: #fff; background: #2862e9; font-size: 1.2rem; } .tool_js { color: #171717; background: #f0db4f; }
 .tool_tailwind { color: #fff; background: #0ea5e9; } .tool_bootstrap { color: #fff; background: #7952b3; } .tool_ux { color: #fff; background: #5148ff; }
 .tool_word { color: #fff; background: #185abd; } .tool_excel { color: #fff; background: #107c41; } .tool_powerpoint { color: #fff; background: #c43e1c; } .tool_zoom { color: #fff; background: #2d8cff; }
+/* Four insight cards stay balanced from mobile through wide desktop layouts. */
+.notes_grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+@media (min-width: 640px) { .notes_grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1280px) { .notes_grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+/* Insights cards use real stock photography with a consistent, responsive crop. */
+.note_image { margin: 0 0 1rem; overflow: hidden; }
+.note_image img { display: block; width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--border); border-radius: 1rem; object-fit: cover; object-position: center; background: var(--surface-soft); }
+.note_photo_credit { margin-top: .45rem; color: var(--muted); font-size: .65rem; line-height: 1.35; }
+.note_photo_credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.note_photo_credit a:hover { color: var(--accent); }
+
 /* Mini blog / field notes */
 .note_card { display: flex; flex-direction: column; align-items: stretch; }
 .note_number { display: grid; width: 2.5rem; height: 2.5rem; place-items: center; border-radius: .85rem; background: var(--accent-soft); color: var(--accent); font-size: .85rem; font-weight: 900; }
