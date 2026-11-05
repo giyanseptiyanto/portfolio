@@ -1,13 +1,15 @@
 {
   "name": "giyan-personal-portfolio",
-  "version": "2.8.0",
+  "version": "3.1.0",
   "private": true,
   "description": "Personal portfolio of Giyan Septiyanto. Static HTML, Tailwind CSS v4, and vanilla JavaScript.",
   "scripts": {
     "dev:css": "tailwindcss -i ./src/input.css -o ./assets/css/tailwind.generated.css --watch",
     "build:css": "tailwindcss -i ./src/input.css -o ./assets/css/tailwind.generated.css --minify",
     "build": "npm run build:css",
-    "check:js": "node --check ./assets/js/main.js && node --check ./assets/js/languages.js && node --check ./assets/js/projects.js"
+    "check:js": "node --check ./assets/js/main.js && node --check ./assets/js/languages.js && node --check ./assets/js/projects.js",
+    "check:translations": "node ./scripts/check-translations.mjs",
+    "check": "npm run check:js && npm run check:translations"
   },
   "devDependencies": {
     "@tailwindcss/cli": "4.1.18",
